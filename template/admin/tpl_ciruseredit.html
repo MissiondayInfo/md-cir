@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>MissionDay Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css" />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css" />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+		
+		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#registration" class="gn-icon gn-icon-help">Registration</a></li>
+								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="qrcheck.php" class="gn-icon gn-icon-archive">QR-Checkin</a></li>
+								<li><a href="../impressum.html" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">MissionDay Dummy</a>
+				</li>
+				<li>
+					<div style="font-size: 14pt; padding-left: 20px; padding-right: 20px;">
+						<a href="admin.php?action=logout">
+							<span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="hidden-xs"> <? echo $_SESSION['agent']; ?></span>
+						</a>
+					</div>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+	
+		<!-- Modal -->
+		<div class="modal fade bs-modal-confirmdelete" tabindex="-1" role="dialog" aria-labelledby="rasterSystemModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="rasterSystemModalLabel">Security query</h4>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								
+								<div class="col-xs-12 ">
+									Are you sure delte user: "<? echo $ciruserName; ?>" ?
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<form action="admin.php?action=ciruseredit" method="post">
+							<input type="hidden" name="agentid" value="<? echo $_GET["id"]; ?>" />
+							<input type="hidden" name="agentname" value="<? echo $ciruserName; ?>" />
+							<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+							<button type="submit" class="btn btn-danger" name="btn_action" value="del" >Yes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<!-- /Modal -->	
+		
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="_blank"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->		
+
+		
+		<!-- Section: TBL Users -->
+		<section id="tbl_users" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>CIRS Users</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 text-left">
+						<form action="admin.php?action=ciruseredit" parsley-validate novalidate style="text-align: left;" method="post">
+							<input type="hidden" name="agentid" value="<? echo $_GET["id"]; ?>" />
+							<input type="hidden" name="old_agentname" value="<? echo $ciruserName; ?>" />
+							<input type="hidden" name="old_passwort" value="<? echo $ciruserPassword; ?>" />
+							<input type="hidden" name="old_gid" value="<? echo $ciruserGid; ?>" />
+							<div class="form-group">
+								<label for="agentname">Agentname</label>
+								<input type="alphanum" name="agentname" parsley-trigger="change" required placeholder="Enter Agentname" class="form-control" maxlength="15" value="<? echo $ciruserName; ?>" />
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label><br />
+								New Password: <input type="password" name="password" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" value="<? echo $ciruserPassword; ?>" />								
+								Repeate Password: <input type="password" name="password_check" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" value="<? echo $ciruserPassword; ?>" />								
+							</div>
+						  <div class="form-group">
+								<label for="gid">User Status</label>
+								<select name="gid" class="form-control">
+									<option value=0 <? if ($ciruserGid==0){ echo 'selected';} ?>>CIRS User</option>
+									<option value=1 <? if ($ciruserGid==1){ echo 'selected';} ?>>Administrator</option>
+								</select>
+						  </div>
+						  		<a href="admin.php" class="btn btn-primary">Cancel</a>
+								<button type="submit" name="btn_action" value="sav" class="btn btn-success">Save</button>
+								<button type="button" data-toggle="modal" data-target=".bs-modal-confirmdelete" class="btn btn-danger">Delete</button>
+						</form>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 text-left">
+						<div class="panel panel-default" style="max-width: 320px;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Information ID: <span class="badge"><? echo $_GET["id"]; ?></span></h3>
+							</div>
+							<div class="panel-body">
+								Last Login: <?php if($ciruserTimestamp==0){echo "Never";} else {echo timestampTOdatetime($ciruserTimestamp);}?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- /Section: TBL Users -->
+
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->		
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+
+		<script src="../_core/plugins/validation/parsley.min.js"></script>
+	</body>
+</html>

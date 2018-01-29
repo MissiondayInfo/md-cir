@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>Mission Day Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css"  />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css"  />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+
+		<link href="../_images/Mission DayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#registration" class="gn-icon gn-icon-help">Registration</a></li>
+								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="qrcheck.php" class="gn-icon gn-icon-archive">QR-Checkin</a></li>
+								<li><a href="../impressum.html" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">Mission Day Dummy</a>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+
+		
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a> 
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->		
+
+		
+		<!-- Section: registration -->
+		<section id="registration" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>Login</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						Orga Admin Area
+						<hr />
+					</div>
+				</div>
+				<?php
+					if ($errmsg=="") {
+						$errview= 'style="display: none"';
+					}
+				?>
+				<div class="row" <?php echo $errview; ?>>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>Warning!</strong> <?php	echo $errmsg; ?>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<form action="admin.php" parsley-validate novalidate style="text-align: left;" method="post">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<label>Login</label>
+								<input type="alphanum" name="login_agent" parsley-trigger="change" required placeholder="Enter your Loginname" class="form-control" maxlength="15" />
+							</div><!--/form-group-->
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" name="login_password" parsley-trigger="change" required placeholder="Enter your ORGA Passwod" class="form-control" maxlength="32" />
+							</div><!--/form-group-->
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12">
+							<div>
+								<button class="btn btn-skin scroll" type="submit">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+		</section>
+		<!-- /Section: registration -->			
+
+
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->	
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+
+		<script src="../_core/plugins/validation/parsley.min.js"></script>
+	</body>
+</html>

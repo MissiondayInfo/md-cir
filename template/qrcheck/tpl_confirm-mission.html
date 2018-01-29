@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>MissionDay Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css"  />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css"  />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+		
+		<script> window.intergramId = "-1001214483425" 
+		window.intergramCustomizations = {
+        titleClosed: 'Chat öffnen',
+        titleOpen: 'Supportchat',
+        introMessage: 'Willkommen beim Hilfe-Chat des MD Dummy. ' +
+						'Mit deiner ersten Nachricht wird für uns ein anonymer Gast-Chat gestartet. ' +
+						'Falls nicht bereits geschehen, schau doch vielleicht mal in die FAQs.',
+        autoResponse: 'Deine Nachricht ist bei uns eingegangen. Es kann allerdings etwas dauern bis jemand aus der Orga ' +
+						'antworten kann. Teile uns doch schon mal deinen Name oder Agentenname mit',
+        autoNoResponse: '...es scheint aktuell tatsächlich niemand online zu sein. Versuche es ' +
+						'evtl. später nochmals oder habe noch etwas Geduld.',
+        mainColor: "#eb5d1e", // Can be any css supported color 'red', 'rgb(255,87,34)', etc
+        alwaysUseFloatingButton: true // Use the mobile floating button also on large screens
+    };</script>
+	<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+		<link href="../_core/plugins/data-tables/DT_bootstrap.css" 		rel="stylesheet"  	type="text/css" />
+		<style>
+			.dataTables_paginate.paging_bootstrap.pagination li {
+				 border: 1px solid #DDDDDD;
+				 border-radius: 3px;
+				 float: left;
+				 margin: 0 1px;
+				list-style:none;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li.disabled a {
+				 color: #C7C7C7;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li a {
+				 color: #797979;
+				 display: inline-block;
+				 padding: 5px 10px;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li:hover a, .dataTables_paginate.paging_bootstrap.pagination li.active a {
+				 background: none repeat scroll 0 0 #EEEEEE;
+				 border-radius: 3px;
+				 color: #797979;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination {
+				 float: right;
+				 margin-top: 5px;
+			}		
+		</style>	
+		
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#qrscan" class="gn-icon gn-icon-archive">WebQR Scanner</a></li>
+								<li><a href="#registration" class="gn-icon gn-icon-help">Registration</a></li>
+								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="admin.php" class="gn-icon gn-icon-archive">Admin</a></li>
+								<li><a href="https://dummy.missionday.info/impressum.php" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">MissionDay Dummy</a>
+				</li>
+				<li>
+					<div style="font-size: 14pt; padding-left: 15px; padding-right: 15px;">
+						<a href="qrcheck.php?action=logout">
+							<span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="hidden-xs"> {$cirusername}</span>
+						</a>
+					</div>
+				</li>		
+				<li>
+				</li>
+			</ul>			
+			
+		</div>
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:60px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->	
+		<!-- Section: Check-in -->
+		<section id="mdinfo" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>Check-In Registration</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="row">
+							<div class="col-xs-3 text-right">
+								<img src="../_images/{$agentFaction}.png" style="width: 50px;"/>
+							</div>
+							<div class="col-xs-6 text-center">
+								{$agentName}<br />
+								[{$agentAuthcode}]
+							</div>
+							<div class="col-xs-3 text-left">
+								{$missionday_state}
+							</div>
+						</div>
+					</div>
+					{$agentconfirm_error}
+					<div class="col-xs-12 col-sm-12 col-md-12" {$missionconfirm_form}>
+						<form action="qrcheck.php?authcode={$agentAuthcode}" name="confirmmission" parsley-validate novalidate method="post">
+							<div class="row">
+								<div class="col-xs-5 text-right" style="padding: 9px 5px;">
+									<label for="missioncomplete">Complete:</label>
+								</div>
+								<div class="col-xs-3 text-left" style="padding: 9px 5px;">
+									<select name="missioncomplete" class="form-control">
+										{$select_missioncomplete}
+									</select>
+								</div>
+								<div class="col-xs-4" style="padding: 0;">
+									<button type="submit" name="btn_action" value="confirm" class="btn btn-skin scroll">Confirm</button>
+								</div>
+							</div>
+						  	
+						</form>
+						
+		<!-- Badges -->						
+						
+						<div class="row">		<!-- Reihe 1 -->
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=1;return false;">
+									<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=2;return false;">
+									<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=3;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=4;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=5;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=6;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+						</div>
+						<div class="row">		<!-- Reihe 2 -->
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=7;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=8;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=9;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=10;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=11;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=12;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+						</div>
+						<div class="row">		<!-- Reihe 3 -->
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=13;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=14;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=15;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=16;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=17;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=18;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+						</div>
+						<div class="row">		<!-- Reihe 4 -->
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=19;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=20;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=21;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=22;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>					
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=23;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+							<div class="col-xs-2" style="padding:5px;">
+								<a href="#" onclick="document.confirmmission.missioncomplete.selectedIndex=24;return false;">
+								<img src="https://dummy.missionday.info/_images/badges/example_web-badge.jpg" class="img-responsive" />
+								</a>
+							</div>
+		<!-- /Badges -->							
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: Schedule -->	
+
+		
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+		<script src="../_core/plugins/validation/parsley.min.js"></script>
+	</body>
+</html>

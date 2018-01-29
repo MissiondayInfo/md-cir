@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>	
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>Mission Day Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css"  />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css"  />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+
+		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#registration" class="gn-icon gn-icon-help">Registration</a></li>
+								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="#credits" class="gn-icon gn-icon-archive">Credits</a></li>
+								
+								<!--li><a href="admin.php" class="gn-icon gn-icon-archive">Admin</a></li-->
+								<li><a href="https://www.missionday.info/impressum/" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">Mission Day Dummy</a>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+
+		
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="_blank"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->		
+
+		
+		<!-- Section: qrcode -->
+		<section id="qrcode" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>QR Code</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+							You got a mail with your qr-code.<br />
+							Maybe check your Spam Folder.
+						<hr />
+							<p>By re-registering with the same data,<br />
+							you can later get this same QR code displayed here.<br />
+							But the email will not be sent again.</p>
+					</div>
+				</div>
+			   <?php
+					if ($errmsg=="") {
+						$errhide= 'style="display: none"';
+					}
+				?>
+				<div class="row" <?php echo $errhide; ?>>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>Well done!!</strong> <?php 	echo $errmsg; ?>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>
+							Your QR Code:
+						</p>
+						<p>
+							<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<? echo $qr_url;?>&choe=UTF-8" title="Link to Google.com" /><br />
+							<? echo $authcode; ?><br />
+							<br />
+							The QR code will arrive with you in a few minutes.<br />
+							It can take up to 1 hour, please be patient and check your spam folder. Sender address: dummy@missionday.info.<br />
+						</p>
+					</div>
+				</div>  
+			</div>  
+		</section>
+		<!-- /Section: qrcode -->				
+
+
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->
+
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+
+		<script src="../_core/plugins/validation/parsley.min.js"></script>	</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>Mission Day Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css" />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css" />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+		
+		<link href="../_core/plugins/data-tables/DT_bootstrap.css" 		rel="stylesheet"  	type="text/css" />
+		<style>
+			.dataTables_paginate.paging_bootstrap.pagination li {
+				 border: 1px solid #DDDDDD;
+				 border-radius: 3px;
+				 float: left;
+				 margin: 0 1px;
+				list-style:none;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li.disabled a {
+				 color: #C7C7C7;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li a {
+				 color: #797979;
+				 display: inline-block;
+				 padding: 5px 10px;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination li:hover a, .dataTables_paginate.paging_bootstrap.pagination li.active a {
+				 background: none repeat scroll 0 0 #EEEEEE;
+				 border-radius: 3px;
+				 color: #797979;
+			}
+			.dataTables_paginate.paging_bootstrap.pagination {
+				 float: right;
+				 margin-top: 5px;
+			}		
+		</style>
+		<script> window.intergramId = "-1001205394148" 
+				window.intergramCustomizations = {
+				titleClosed: 'Chat öffnen',
+				titleOpen: 'MD Dummy: Support',
+				introMessage: 'Willkommen beim Hilfe-Chat des Ingress Enlightened Hackventskalender 2017. ' +
+								'Mit deiner ersten Nachricht wird für uns ein anonymer Gast-Chat gestartet. ' +
+								'Teile uns um besten nun deinen Agentname mit und wie wir dir helfen können.',
+				autoResponse: 'Deine Nachricht ist bei uns eingegangen. Es kann allerdings etwas dauern bis jemand aus der Orga ' +
+								'antworten kann. Teile uns doch schon mal deinen Name oder Agentenname mit',
+				autoNoResponse: '...es scheint aktuell tatsächlich niemand online zu sein. Versuche es ' +
+								'evtl. später nochmals oder habe noch etwas Geduld.',
+				mainColor: "#eb5d1e", // Can be any css supported color 'red', 'rgb(255,87,34)', etc
+				alwaysUseFloatingButton: true // Use the mobile floating button also on large screens
+			};
+			</script>
+		<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>		
+
+		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#registration" class="gn-icon gn-icon-help">Infopanel</a></li>
+								<li><a href="#tbl_agents" class="gn-icon gn-icon-archive">Registered Agents</a></li>
+								<li><a href="#tbl_users" class="gn-icon gn-icon-archive">CIR User Management</a></li>
+<!--								<li><a href="#badges" class="gn-icon gn-icon-archive">Badges overview</a></li>
+-->								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="qrcheck.php" class="gn-icon gn-icon-archive">QR-Checkin</a></li>
+								<li><a href="../impressum.html" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">Mission Day Dummy</a>
+				</li>
+				<li>
+					<div style="font-size: 14pt; padding-left: 20px; padding-right: 20px;">
+					<a href="admin.php?action=logout">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="hidden-xs"> <? echo $_SESSION['agent']; ?></span>
+					</a>
+					</div>
+				<li>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->		
+
+		
+		<!-- Section: registration -->
+		<section id="registration" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>Orga CIR System</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4">
+						<div class="panel panel-default" style="max-width: 320px;">
+							<div class="panel-heading">
+								<h3 class="panel-title"><? echo $_SESSION['agent']; ?></h3>
+							</div>
+							<div class="panel-body">
+								<!-- Nav tabs -->
+								<div class="nav nav-tabs" role="tablist">
+									<button href="#info" aria-controls="info" role="tab" data-toggle="tab" class="btn btn-skin scroll"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></button>
+									<button href="#howto" aria-controls="howto" role="tab" data-toggle="tab" class="btn btn-skin scroll"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+									<button href="#password" aria-controls="password" role="tab" data-toggle="tab" class="btn btn-skin scroll"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+									<button href="#quicklinks" aria-controls="quicklinks" role="tab" data-toggle="tab" class="btn btn-skin scroll"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></button>
+									<a href="qrcheck.php" class="btn btn-skin scroll"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span></a>
+								</div>
+							</div>
+						</div>
+					</div>						
+					<div class="col-xs-12 col-sm-8 text-left">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="info">
+								<h4>Information</h4>
+								Information coming soon...
+							</div>
+							<div role="tabpanel" class="tab-pane" id="password">
+								<h4>Password change</h4>
+								<form action="admin.php?action=ciruserpaswd" parsley-validate novalidate style="text-align: left;" method="post">
+									<input type="hidden" name="agentid" value="<? echo $_SESSION['agent_uid']; ?>" />
+									<div class="form-group">
+										<div class="col-xs-12 col-sm-4">
+											New Password: <input type="password" name="password" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />								
+										</div>
+										<div class="col-xs-12 col-sm-4">
+											Repeate Password: <input type="password" name="password_confirm" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />								
+										</div>
+										<div class="col-xs-12 col-sm-4" style="padding-top: 30px;">
+											<button type="submit" name="btn_action" value="sav" class="btn btn-success">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="howto">
+								<h4>Howto</h4>
+								<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz_OmJ2Y7zl0HhPCUmNeBOnBGF52S0xLh30YseALdhbBjG2sw70aE48iDjPbq43ScRZW-o7vj6BYGA/embed?start=false&loop=false&delayms=3000" frameborder="0" width="320" height="240" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+							</div>							
+							<div role="tabpanel" class="tab-pane" id="quicklinks">
+								<h4>Quick Links</h4>
+								<a href="#tbl_users" class="btn btn-skin scroll"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span><span> CIRS Users</span></a>
+								<a href="#tbl_agents" class="btn btn-skin scroll"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span><span> Registered Agent</span></a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="container">
+				<?php echo notifybox($err_mode, $err_msg); ?>
+			</div>
+		</section>
+		<!-- /Section: registration -->			
+
+
+		<!-- Section: TBL Agents -->
+		<section id="tbl_agents" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>Registered Agents</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						No Faction
+						<div class="progress">
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow=" <?php echo $percentfaction['']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['']; ?>%;">
+								<?php echo $percentfaction['']."%"; ?>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						Enlightened 
+						<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=" <?php echo $percentfaction['enl']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['enl']; ?>%;">
+								<?php echo $percentfaction['enl']."%"; ?>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						Resistance
+						<div class="progress">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=" <?php echo $percentfaction['res']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['res']; ?>%;">
+								<?php echo $percentfaction['res']."%"; ?>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 text-left">
+						<div>
+							No Faction -> <?php echo $countfaction['']." Agents"; ?><br />
+							Enlightened -> <?php echo $countfaction['enl']." Agents"; ?><br />
+							Resistance -> <?php echo $countfaction['res']." Agents"; ?><br />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=" <?php echo $percentfaction['enl']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['enl']; ?>%;">
+								<?php echo $percentfaction['enl']."%"; ?>
+							</div>
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=" <?php echo $percentfaction['res']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['res']; ?>%;">
+								<?php echo $percentfaction['res']."%"; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="block-web">
+							<div class="porlets-content">
+								<div class="adv-table editable-table ">
+									<div class="margin-top-10"></div>
+									<table class="table table-striped table-hover table-bordered" id="editable-sample">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Agentname</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php echo $datatable_agents; ?>
+										</tbody>
+									</table>
+								</div>
+							</div><!--/porlets-content-->  
+						</div><!--/block-web--> 
+					</div><!--/col-md-12--> 
+				</div>
+			</div>
+		</section>
+		<!-- /Section: TBL Agents -->			
+
+		<!-- Section: TBL Users -->
+		<section id="tbl_users" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>CIRS Users</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Agentname</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php echo $datatable_ciruser; ?>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
+						<a href="admin.php?action=cirusernew" class="btn btn-skin scroll" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New User</button></a>
+					</div>
+				</div>
+			</div>
+		</section>		
+
+		
+		<!-- Section: badges -->
+		<?php
+		include ("_core/html/badges.html");
+		
+		?> 
+	    <!-- /Section: badges -->		
+
+
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->		
+		
+
+
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		
+		<script src="../_core/plugins/data-tables/jquery.dataTables.js"></script>
+		<script src="../_core/plugins/data-tables/DT_bootstrap.js"></script>
+		<script src="../_core/plugins/data-tables/dynamic_table_init.js"></script>
+		<script src="../_core/plugins/edit-table/edit-table.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+			EditableTable.init();
+			});
+		</script>
+		
+		
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+		<script src="../_core/plugins/validation/parsley.min.js"></script>
+	</body>
+</html>

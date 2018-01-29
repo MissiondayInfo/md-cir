@@ -1,0 +1,165 @@
+<!DOCTYPE html>banner.jpg
+<html lang="en">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113138144-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-113138144-1');
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" 		content="width=device-width, initial-scale=1.0" />
+		<meta name="description" 	content="Ingress Mission Day Dummy" />
+		<meta name="author" 			content="Orga Mission Day Dummy" />
+
+		<title>MissionDay Dummy</title>
+
+		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css" />
+		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css" />
+		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
+		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
+		
+		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
+	</head>
+	<body data-spy="scroll">
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a href="#registration" class="gn-icon gn-icon-help">Registration</a></li>
+								<li><a href="#contact" class="gn-icon gn-icon-archive">Contact</a></li>
+								<li><a href="qrcheck.php" class="gn-icon gn-icon-archive">QR-Checkin</a></li>
+								<li><a href="../impressum.html" class="gn-icon gn-icon-help">Impressum</a></li>
+							</ul>
+						</div>
+					</nav>
+				</li>
+				<li>
+					<a href="https://dummy.missionday.info/">MissionDay Dummy</a>
+				</li>
+				<li>
+					<div style="font-size: 14pt; padding-left: 20px; padding-right: 20px;">
+						<a href="admin.php?action=logout">
+							<span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="hidden-xs"> <? echo $_SESSION['agent']; ?></span>
+						</a>
+					</div>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+
+		
+		<!-- Section: intro -->
+		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">         	
+						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
+					</div>
+				  </div>
+			</div>    
+		</section>
+		<!-- /Section: intro -->		
+
+		
+		<!-- Section: TBL Users -->
+		<section id="tbl_users" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="section-heading">
+							<h2>Agent</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 text-left">
+						<form action="admin.php?action=agentedit" parsley-validate novalidate style="text-align: left;" method="post">
+							<input type="hidden" name="agentid" value="<? echo $_GET["id"]; ?>" />
+							<div class="form-group">
+								<label for="agentname">Agent name</label>
+								<input type="alphanum" name="agentname" parsley-trigger="change" required placeholder="Agent name" class="form-control" maxlength="15" value="<? echo $agentName; ?>" />
+							</div>
+							<div class="form-group">
+								<label for="email">Email address</label>
+								<input type="email" name="email" parsley-trigger="change" required placeholder="Email address" class="form-control" maxlength="256" value="<? echo $agentEmail; ?>" />								
+							</div>
+						  <div class="form-group">
+								<label for="faction">Faction</label>
+								<select name="faction" class="form-control">
+									<option value="" <? if ($agentFaction==""){ echo 'selected';} ?>>Keine</option>
+									<option value="enl" <? if ($agentFaction=="enl"){ echo 'selected';} ?>>Enlightend</option>
+									<option value="res" <? if ($agentFaction=="res"){ echo 'selected';} ?>>Resistance</option>
+								</select>
+						  </div>
+						  		<a href="admin.php" class="btn btn-primary">Cancel</a>
+								<button type="submit" name="btn_action" value="sav" class="btn btn-success">Save</button>
+								<!--button type="submit" name="btn_action" value="del" class="btn btn-danger">Delete</button-->
+						</form>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 text-left">
+						<div class="panel panel-default" style="max-width: 320px;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Information ID: <span class="badge"><? echo $_GET["id"]; ?></span></h3>
+							</div>
+							<div class="panel-body">
+								Auth Code: <? echo $authcode; ?><br />
+								<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<? echo $qr_url;?>&choe=UTF-8" title="Link to Google.com" /><br />
+							</div>
+							<div class="panel-footer">
+								Registration: <? echo $agentRegtime;?><br>
+								Last Update: <? if($agentEdittime==0){echo "Never";} else {echo $agentEdittime;}?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	    <!-- /Section: TBL Users -->		
+
+
+		<!-- Section: contact & credits -->
+		<?php
+		include ("_core/html/footer.html");
+		
+		?> 
+	    <!-- /Section: contact & credits -->		
+		
+		<!-- Section: footer -->
+		<section id="footer" class="home-section text-center bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<p>This is a fan page and not affiliated with Ingress or Niantic Labs</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /Section: footer -->
+
+
+		<!-- Core JavaScript Files -->
+		<script src="../_js/jquery.min.js"></script>
+		<script src="../_js/jquery.easing.min.js"></script>
+		<script src="../_js/classie.js"></script>
+		<script src="../_js/gnmenu.js"></script>
+		<script src="../_js/jquery.scrollTo.js"></script>
+		<script src="../_js/stellar.js"></script>
+		<script src="../_js/bootstrap.min.js"></script>
+
+		
+		<!-- Custom Theme JavaScript -->
+		<script src="../_js/custom.js"></script>
+
+		<script src="../_core/plugins/validation/parsley.min.js"></script>
+	</body>
+</html>

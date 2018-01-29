@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<style>
+			hr {
+				margin: 30px 0px;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000000;
+			}
+		</style>
+		<meta charset="UTF-8">
+	</head>
+	<body style="font-family:Helvetica, Calibri, Arial; background:#F8F8F8;">
+		<div style="width: 470px; background: #FFFFFF;  border-top: 2px solid gray; border-bottom: 2px solid gray; padding: 15px 35px; margin: 0 auto;">
+			<p style="margin-bottom: 5px;">Thanks for your response to</p>
+			<a href="http://events.ingress.com/MissionDay/Dummy" style="color: #000000;">
+				<h1 style="margin-top: 0px;">Mission Day Dummy</h1>
+			</a>
+			<p>
+				{$f_agentname},	
+			</p>
+			<p>
+				You are now registered for the check-in at Mission Day in Dummy on <span style="white-space: nowrap">January 27th.</span><br />
+				Please bring this QR Code to the check-in beetween <span style="white-space: nowrap">1:00pm and 5:00pm</span>.
+			</p>
+			<p>
+				By re-registering with the same data, you can later get this same QR code displayed as here.<br />
+				But the email will not be sent again
+			</p>
+			<p>
+				You are required to complete 6 or more "MD: Dummy, ..." missions for the Mission Day Medal point.
+			</p>
+			<p>
+				<div><b>Agentame:</b> {$f_agentname}</div>
+				<div><b>Email:</b> {$f_email}</div>
+				<div>
+					<b>QR Code:</b><br />
+					<div style="text-align: center;">
+					<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={$f_qrurl}&choe=UTF-8" title="Google QR CODE" /><br />
+					<span style="font-size: 8pt">{$f_authcode}</span>
+					</div>
+				</div>
+				</p>
+			<hr />
+				<div style="color: red; font-size: 12pt;">
+					<b>Important!</b> <br />
+					Please check your agent name for case sensitivity,<br />
+					we will forward your input to Niantic. 
+				</div>
+			<hr />
+			<p>
+				<div><b>Group Picture Location</b></div>
+				<div>11:00am - Brabo's Monument</div>
+				<div><a href="https://goo.gl/maps/5bBE1bnF23M2" target="_blank">Grote Markt, 2000 Dummy, Belgium</a></div>
+			</p>
+			<p>
+				<div><b>Registration</b></div>
+				<div>1:00pm - 5:00pm</div>
+				<div><a href="https://goo.gl/maps/QESDM3j4Qq72" target="_blank">Groenplaats 43, 2000 Dummy, Belgium</a></div>
+				<div><a href="http://www.super-mercado.be/" target="_blank"><img style="border: 0px solid ; width: 180px;" alt="Mercado" title="Super Mercado Dummy" src="https://dummy.missionday.info/_images/logo-zwart-01_by_mercado.png"></a></div>				
+			</p>
+			<hr />
+			<p>
+				<div style="text-align: center;">
+					<b>For updates, info and more, visit:</b>
+					<p>
+						<a href="https://dummy.missionday.info">
+							<button style="padding: 15px; width: 250px; background: #000000; color: #ffffff; border-radius: 10px; font-size: 14pt;">Mission Day Dummy </button>
+						</a>
+					</p>
+				</div>
+				
+			</p>
+			<div style="font-size: 6pt; margin-top: 50px;">
+				[Send: {$datum} - {$uhrzeit}] 
+			</div>
+		</div>
+	</body>
+</html>
