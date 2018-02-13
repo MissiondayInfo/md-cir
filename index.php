@@ -39,18 +39,18 @@
 		// Prüfen Ob Agent bereits vorhanden:
 		if (!isset($row['email'])) {
 			// <NEIN> DB Eintrag anlegen
-
-			$faction= $_POST ["faction"];
+			$tgname = $_POST ["tgname"];
+			$faction = $_POST ["faction"];
 			$email = $_POST["email"];
 			$authcode = authcodegenerator(8,3);
 			$reg_time = date("Y-m-d H:i:s");
 			$qr_url = 'https%3A%2F%2Fdummy.missionday.info%2Fqrcheck.php%3F%26authcode%3D'.$authcode;
 			
-			$query = "INSERT INTO agents (agentname, faction, email, authcode, reg_time) VALUES ('$agentname', '$faction', '$email', '$authcode', '$reg_time')";
+			$query = "INSERT INTO agents (agentname, tgname, faction, email, authcode, reg_time) VALUES ('$agentname', '$tgname', '$faction', '$email', '$authcode', '$reg_time')";
 			$result = $db->query($query);
 	
 			//Mail senden
-			send_qrcode($email,$agentname,$authcode, $qr_url);
+			send_qrcode($email,$agentname,$tgname,$authcode, $qr_url);
 
 			include ("template/tpl_qrcode.html");
 		} else {
