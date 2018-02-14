@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-/*** [Admin-System] 
+/*** [Admin-System]
 ****
 **** Variabeln ändern.... Sinnvolle Namen
 
@@ -10,7 +10,7 @@
 		|
 		\_ {NEIN} -> Daten in der Datenbank eintragen
 		|			 -> E-Mail mit Infos senden
-		|			 -> QR-Code Seite mit AuthCode anzeigen	
+		|			 -> QR-Code Seite mit AuthCode anzeigen
 		|
 		\_ {JA} -> Prüfen ob E-Mail Adresse gleich ist
 					  |
@@ -20,18 +20,18 @@
 					  \_ {NEIN} -> Info ausgeben das die E-Mail Adresse eine Andere ist. Prüfen und ggf. beim Support melden
 
 	  GET Option
-	
+
 	*/
 
 	//Überprüfungen der Dateneingaben durchführen!!!!
 	// ALLES Sauber überprüfen und ordentlich machen ...
-	
+
 	require_once ('_core/templatesystem-min.php');
 	require_once ('_core/.function.php');
 	require_once ('_core/plugins/phpmailer/PHPMailerAutoload.php');
 	// GGF Template System nutzen
-	
-	
+
+
 	// ## Datenbankverbindung open ##
 	$db = new db($db_host, $db_user, $db_pass, $db_name);
 
@@ -48,11 +48,11 @@
 		$_SESSION['agent']="";
 		$_SESSION['agent_uid']=0;
 	}
-	
+
 	// login
 	if (isset($_POST["login_agent"]) AND isset($_POST["login_password"]) AND $_GET["action"]!="logout") { /* Prüfen ob alles gesendet wurde per Formular */
 		$agentname = str_replace(' ','',$_POST ["login_agent"]);
-		$query = sprintf("SELECT uid, agentname, password, gid FROM cirs_users WHERE agentname = '%s'", $db->real_escape_string($agentname));
+		$query = sprintf("SELECT uid, agentname, tgname, password, gid FROM cirs_users WHERE agentname = '%s'", $db->real_escape_string($agentname));
 		$result = $db->query($query);
 		$row=$result->fetch_array(MYSQLI_ASSOC);
 		/* Prüfen Ob Agent vorhanden ist */
@@ -65,7 +65,7 @@
 				} else {
 					$_SESSION['agent'] = $_POST["login_agent"];
 					$_SESSION['agent_uid']=$row['uid'];
-				}				
+				}
 			} else { // <NEIN>
 				$err_mode = "warning";
 				$err_msg = "Please check your Passwort!!!!";
@@ -75,18 +75,19 @@
 			$err_msg = "Please check your Agentname, no match with our database...";
 		}
 	}
-	
-	
+
+
 	if ($_SESSION['agent']!=""){
 		// Agent ist angemeldet
-		
+
 		switch (htmlentities($_GET["action"])) { //Aktion auswerten
 		case "ciruseredit":
 			if (isset($_GET["id"])){
-				$query = sprintf("SELECT uid,agentname,password,gid,timestamp FROM cirs_users WHERE uid LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
+				$query = sprintf("SELECT uid,agentname,tgname,password,gid,timestamp FROM cirs_users WHERE uid LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
 				$result = $db->query($query);
 				$row=$result->fetch_array(MYSQLI_ASSOC);
 				$ciruserName=$row['agentname'];
+				$cirusertgName=$row['tgname'];
 				$ciruserPassword=$row['password'];
 				$ciruserGid=$row['gid'];
 				$ciruserTimestamp=$row['timestamp'];
@@ -96,9 +97,9 @@
 			If ($_POST["btn_action"]=="sav"){
 				// Änderungen speichern
 				$logfiletext = "user: $sql_agentname | ";
-				if ($_POST['agentname']!=$_POST['old_agentname']){ 
+				if ($_POST['agentname']!=$_POST['old_agentname']){
 					// TODO: Überprüfen ob Benutzername existiert
-					$logfiletext .= "Agentname -> ".$_POST['agentname']. " | "; 
+					$logfiletext .= "Agentname -> ".$_POST['agentname']. " | ";
 				}
 				$sql_agentname=$_POST['agentname'];
 				if (md5($_POST['password'])==$_POST['old_password']){
@@ -110,7 +111,7 @@
 				}
 				if ($_POST['gid']!=$_POST['old_gid']){ $logfiletext .= "GID -> ".$_POST['gid']. " | "; }
 				$sql_gid=$_POST['gid'];
-				$query = sprintf("UPDATE cirs_users SET agentname = '$sql_agentname', password = '$sql_password', gid = '$sql_gid' WHERE uid = '%s'", $db->real_escape_string($_POST["agentid"]));
+				$query = sprintf("UPDATE cirs_users SET agentname = '$sql_agentname', tgname = '$sql_tgname', password = '$sql_password', gid = '$sql_gid' WHERE uid = '%s'", $db->real_escape_string($_POST["agentid"]));
 				$result = $db->query($query);
 				//Logfile erstellen
 				add_logfile($db, "ciruser edit","change: $logfiletext");
@@ -130,8 +131,8 @@
 				break;
 			}
 			// goto defaultpage;
-			
-			
+
+
 		case "ciruserpaswd":
 			If ($_POST["btn_action"]=="sav"){
 				// Änderungen speichern
@@ -161,9 +162,9 @@
 				// goto defaultpage;
 				break;
 			}
-			// goto defaultpage;			
-			
-			
+			// goto defaultpage;
+
+
 		case "cirusernew":
 			if (isset($_POST["btn_action"])){
 				$query = sprintf("SELECT COUNT(agentname) AS anzahlagentname FROM cirs_users WHERE agentname= '%s'", $db->real_escape_string($_POST['agentname']));
@@ -175,9 +176,10 @@
 					if ($_POST['password']==$_POST['password_confirm']){
 						// Anlegen
 						$sql_agentname=$_POST['agentname'];
+						$sql_tgname=$_POST['tgname'];
 						$sql_password=md5($_POST['password']);
 						$sql_gid=$_POST['gid'];
-						$query = "INSERT INTO cirs_users (agentname, password, gid) VALUES ('$sql_agentname', '$sql_password', '$sql_gid')";
+						$query = "INSERT INTO cirs_users (agentname, password, gid) VALUES ('$sql_agentname', '$sql_tgname', '$sql_password', '$sql_gid')";
 						$result = $db->query($query);
 						$err_mode = "success";
 						$err_msg = "Add new User!";
@@ -212,10 +214,11 @@
 			}
 		case "agentedit":
 			if (isset($_GET["id"])){
-				$query = sprintf("SELECT id,agentname,faction,email,authcode, reg_time, edit_time FROM agents WHERE id LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
+				$query = sprintf("SELECT id,agentname,tgname,faction,email,authcode, reg_time, edit_time FROM agents WHERE id LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
 				$result = $db->query($query);
 				$row=$result->fetch_array(MYSQLI_ASSOC);
 				$agentName=$row['agentname'];
+				$agenttgName=$row['tgname'];
 				$agentEmail=$row['email'];
 				$agentFaction=$row['faction'];
 				$agentRegtime=$row['reg_time'];
@@ -228,10 +231,11 @@
 			If ($_POST["btn_action"]=="sav"){
 				// Änderungen speichern
 				$sql_agentname = $_POST["agentname"];
+				$sql_tgname = $_POST["tgname"];
 				$sql_email = $_POST["email"];
 				$sql_faction = $_POST["faction"];
 				$sql_edittime = date("Y-m-d H:i:s");
-				$query = sprintf("UPDATE agents SET agentname = '$sql_agentname', email = '$sql_email', faction = '$sql_faction', edit_time = '$sql_edittime'  WHERE id = '%s'", $db->real_escape_string($_POST["agentid"]));
+				$query = sprintf("UPDATE agents SET agentname = '$sql_agentname', tgname = '$sql_tgname', email = '$sql_email', faction = '$sql_faction', edit_time = '$sql_edittime'  WHERE id = '%s'", $db->real_escape_string($_POST["agentid"]));
 				$result = $db->query($query);
 				//Logfile erstellen
 				add_logfile($db, "agent edit","change: $sql_agentname |");
@@ -249,10 +253,11 @@
 			// goto defaultpage;
 		case "agentqrmail":
 			if (isset($_GET["id"])){
-				$query = sprintf("SELECT agentname,email,authcode FROM agents WHERE id LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
+				$query = sprintf("SELECT agentname,tgname,email,authcode FROM agents WHERE id LIKE '%s'", $db->real_escape_string($_GET["id"])); // GGf. Prüfen ob ID vorhanden
 				$result = $db->query($query);
 				$row=$result->fetch_array(MYSQLI_ASSOC);
 				$agentName=$row['agentname'];
+				$tgName=$row['tgname'];
 				$agentEmail=$row['email'];
 				$agentAuthcode=$row['authcode'];
 				include ("template/admin/tpl_agentqrmail.html");
@@ -260,20 +265,21 @@
 			}
 			If ($_POST["btn_action"]=="snd"){
 				$agentname=$_POST['agentname'];
+				$tgname=$_POST['tgname'];
 				$email = $_POST['email'];
 				$authcode = $_POST['authcode'];
 				$qr_url = 'https%3A%2F%2Fdummy.missionday.info%2Fqrcheck.php%3F%26authcode%3D'.$authcode;
-				send_qrcode($email,$agentname,$authcode, $qr_url);
+				send_qrcode($email,$agentname,$tgname,$authcode, $qr_url);
 				add_logfile($db, "qrresend","to: $agentname |");
 				// goto defaultpage;
 				break;
 			}
-		
+
 		default:
 			//defaultpage:
 			// CIR User auflisten
 			$sql_ttl = $set_ttl-time();
-			
+
 			$query = "SELECT sid FROM cirs_users WHERE timestamp < $sql_ttl";
 			$result = $db->query($query);
 			//	print_r($result);
@@ -282,8 +288,8 @@
 				echo $row['id'];
 				//$query = "UPDATE cirs_users SET sid = NULL WHERE sid = '$sql_sessionid'";
 			}
-			
-			$query = "SELECT uid, agentname, gid, sid, timestamp FROM cirs_users";
+
+			$query = "SELECT uid, agentname, tgname, gid, sid, timestamp FROM cirs_users";
 			$row = null; $result = null;
 			$result2 = $db->query($query);
 			//print_r($result);
@@ -314,6 +320,7 @@
 												<tr class="text-center">
 													<td>'. $row['uid'] . '</td>
 													<td>'. $row['agentname'] .'</td>
+													<td><a href="https://t.me/'. $row['tgname'] .'" target="tg">'. $row['tgname'] .'</td>
 													<td>'.$usergid .' '.$useronline.'</td>
 													<td>
 														<a href="admin.php?action=ciruseredit&id='. $row['uid'] .'" type="button" class="btn btn-skin btn-sm">
@@ -328,16 +335,17 @@
 				/**/
 
 			}
-			
-			// Agent auflisten 
-			
-			$query = "SELECT id,agentname,faction FROM agents";
+
+			// Agent auflisten
+
+			$query = "SELECT id,agentname,tgname,faction FROM agents";
 			$result = $db->query($query);
 			while($row=$result->fetch_array(MYSQLI_ASSOC)){
 				$datatable_agents .='
 												<tr class="text-center">
 													<td>'. $row['id'] . '</td>
 													<td><span class="faction_'.$row['faction'].'">'. $row['agentname'] . '</span></td>
+													<td><a href="https://t.me/'. $row['tgname'] .'" target="tg">'. $row['tgname'] .'</td>
 													<td>
 														<a href="admin.php?action=agentedit&id='. $row['id'] .'" type="button" class="btn btn-skin btn-sm">
 															<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -359,12 +367,12 @@
 			$percentfaction['']=round($countfaction['']/$countagentstotal*100,2);
 			$percentfaction['enl']=round($countfaction['enl']/$countagentstotal*100,2);
 			$percentfaction['res']=round($countfaction['res']/$countagentstotal*100,2);
-			include ("template/admin/tpl_index.html"); 
+			include ("template/admin/tpl_index.html");
 		}
 	} else {
 		// Agent ist NICHT angemeldet
 		include ("template/admin/tpl_login.html");
 	}
-	
+
 	$db-> close();
 ?>

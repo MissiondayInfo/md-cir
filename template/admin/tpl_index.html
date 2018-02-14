@@ -16,12 +16,13 @@
 		<meta name="author" 			content="Orga Mission Day Dummy" />
 
 		<title>Mission Day Dummy</title>
-
-		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css" />
-		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/527b257c91.js"></script>
 		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
 		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
-		
+
 		<link href="../_core/plugins/data-tables/DT_bootstrap.css" 		rel="stylesheet"  	type="text/css" />
 		<style>
 			.dataTables_paginate.paging_bootstrap.pagination li {
@@ -47,9 +48,9 @@
 			.dataTables_paginate.paging_bootstrap.pagination {
 				 float: right;
 				 margin-top: 5px;
-			}		
+			}
 		</style>
-		<script> window.intergramId = "-1001205394148" 
+		<script> window.intergramId = "-1001205394148"
 				window.intergramCustomizations = {
 				titleClosed: 'Chat öffnen',
 				titleOpen: 'MD Dummy: Support',
@@ -64,7 +65,7 @@
 				alwaysUseFloatingButton: true // Use the mobile floating button also on large screens
 			};
 			</script>
-		<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>		
+		<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
 
 		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
 	</head>
@@ -106,15 +107,15 @@
 		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">         	
+					<div class="col-xs-12 col-sm-12 col-md-12">
 						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
 					</div>
 				  </div>
-			</div>    
+			</div>
 		</section>
-		<!-- /Section: intro -->		
+		<!-- /Section: intro -->
 
-		
+
 		<!-- Section: registration -->
 		<section id="registration" class="home-section text-center bg-gray">
 			<div class="container">
@@ -144,7 +145,7 @@
 								</div>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="col-xs-12 col-sm-8 text-left">
 						<!-- Tab panes -->
 						<div class="tab-content">
@@ -158,10 +159,10 @@
 									<input type="hidden" name="agentid" value="<? echo $_SESSION['agent_uid']; ?>" />
 									<div class="form-group">
 										<div class="col-xs-12 col-sm-4">
-											New Password: <input type="password" name="password" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />								
+											New Password: <input type="password" name="password" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />
 										</div>
 										<div class="col-xs-12 col-sm-4">
-											Repeate Password: <input type="password" name="password_confirm" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />								
+											Repeate Password: <input type="password" name="password_confirm" parsley-trigger="change" placeholder="Enter password" class="form-control" maxlength="256" />
 										</div>
 										<div class="col-xs-12 col-sm-4" style="padding-top: 30px;">
 											<button type="submit" name="btn_action" value="sav" class="btn btn-success">Save</button>
@@ -172,7 +173,7 @@
 							<div role="tabpanel" class="tab-pane" id="howto">
 								<h4>Howto</h4>
 								<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz_OmJ2Y7zl0HhPCUmNeBOnBGF52S0xLh30YseALdhbBjG2sw70aE48iDjPbq43ScRZW-o7vj6BYGA/embed?start=false&loop=false&delayms=3000" frameborder="0" width="320" height="240" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-							</div>							
+							</div>
 							<div role="tabpanel" class="tab-pane" id="quicklinks">
 								<h4>Quick Links</h4>
 								<a href="#tbl_users" class="btn btn-skin scroll"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span><span> CIRS Users</span></a>
@@ -187,7 +188,7 @@
 				<?php echo notifybox($err_mode, $err_msg); ?>
 			</div>
 		</section>
-		<!-- /Section: registration -->			
+		<!-- /Section: registration -->
 
 
 		<!-- Section: TBL Agents -->
@@ -212,7 +213,7 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4">
-						Enlightened 
+						Enlightened
 						<div class="progress">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=" <?php echo $percentfaction['enl']; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $percentfaction['enl']; ?>%;">
 								<?php echo $percentfaction['enl']."%"; ?>
@@ -256,6 +257,7 @@
 											<tr>
 												<th>ID</th>
 												<th>Agentname</th>
+												<th>Telegram</th>
 												<th>Action</th>
 											</tr>
 										</thead>
@@ -264,13 +266,13 @@
 										</tbody>
 									</table>
 								</div>
-							</div><!--/porlets-content-->  
-						</div><!--/block-web--> 
-					</div><!--/col-md-12--> 
+							</div><!--/porlets-content-->
+						</div><!--/block-web-->
+					</div><!--/col-md-12-->
 				</div>
 			</div>
 		</section>
-		<!-- /Section: TBL Agents -->			
+		<!-- /Section: TBL Agents -->
 
 		<!-- Section: TBL Users -->
 		<section id="tbl_users" class="home-section text-center bg-gray">
@@ -291,6 +293,7 @@
 								<tr>
 									<th>ID</th>
 									<th>Agentname</th>
+									<th>Telegram</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -305,27 +308,27 @@
 					</div>
 				</div>
 			</div>
-		</section>		
+		</section>
 
-		
+
 		<!-- Section: badges -->
 		<?php
 		include ("_core/html/badges.html");
-		
-		?> 
-	    <!-- /Section: badges -->		
+
+		?>
+	    <!-- /Section: badges -->
 
 
 		<!-- Section: contact & credits -->
 		<?php
 		include ("_core/html/footer.html");
-		
-		?> 
-	    <!-- /Section: contact & credits -->		
-		
+
+		?>
+	    <!-- /Section: contact & credits -->
 
 
-		
+
+
 		<!-- Section: footer -->
 		<section id="footer" class="home-section text-center bg-gray">
 			<div class="container">
@@ -340,15 +343,13 @@
 
 
 		<!-- Core JavaScript Files -->
-		<script src="../_js/jquery.min.js"></script>
 		<script src="../_js/jquery.easing.min.js"></script>
 		<script src="../_js/classie.js"></script>
 		<script src="../_js/gnmenu.js"></script>
 		<script src="../_js/jquery.scrollTo.js"></script>
 		<script src="../_js/stellar.js"></script>
-		<script src="../_js/bootstrap.min.js"></script>
 
-		
+
 		<script src="../_core/plugins/data-tables/jquery.dataTables.js"></script>
 		<script src="../_core/plugins/data-tables/DT_bootstrap.js"></script>
 		<script src="../_core/plugins/data-tables/dynamic_table_init.js"></script>
@@ -358,8 +359,8 @@
 			EditableTable.init();
 			});
 		</script>
-		
-		
+
+
 		<!-- Custom Theme JavaScript -->
 		<script src="../_js/custom.js"></script>
 		<script src="../_core/plugins/validation/parsley.min.js"></script>

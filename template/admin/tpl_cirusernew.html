@@ -16,12 +16,13 @@
 		<meta name="author" 			content="Orga Mission Day Dummy" />
 
 		<title>MissionDay Dummy</title>
-
-		<link href="../_plugin/bootstrap/css/bootstrap.min.css" 			rel="stylesheet" 		type="text/css" />
-		<link href="../_plugin/font-awesome/css/font-awesome.min.css" 	rel="stylesheet" 		type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/527b257c91.js"></script>
 		<link href="../_css/animate.css" 										rel="stylesheet" 		type="text/css" />
 		<link href="../_css/style.css" 											rel="stylesheet" 		type="text/css" />
-		
+
 		<link href="../_images/MissionDayLogoSplash.png" 					rel="shortcut icon" 	id="favicon" />
 	</head>
 	<body data-spy="scroll">
@@ -55,20 +56,20 @@
 			</ul>
 		</div>
 
-		
+
 		<!-- Section: intro -->
 		<section id="start" class="home-section text-center bg-gray" style="padding-top:25px;">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">         	
+					<div class="col-xs-12 col-sm-12 col-md-12">
 						<a href="#" target="checkin"><img src="../_images/banner.jpg" class="img-responsive" alt="Responsive Image" width="100%" /></a>
 					</div>
 				  </div>
-			</div>    
+			</div>
 		</section>
-		<!-- /Section: intro -->		
+		<!-- /Section: intro -->
 
-		
+
 		<!-- Section: TBL Users -->
 		<section id="tbl_users" class="home-section text-center bg-gray">
 			<div class="container">
@@ -103,9 +104,13 @@
 								<input type="alphanum" name="agentname" parsley-trigger="change" required placeholder="Enter Agentname" class="form-control" maxlength="15" value="<? echo $ciruserName; ?>" />
 							</div>
 							<div class="form-group">
+								<label for="tgname">Telegram</label>
+								<input type="alphanum" name="tgname" parsley-trigger="change" placeholder="Enter Telegramname" class="form-control" maxlength="36" value="<? echo $cirusertgName; ?>" />
+							</div>
+							<div class="form-group">
 								<label for="password">Password</label><br />
-								New Passwort: <input type="password" name="password" required parsley-trigger="change" placeholder="Enter password" class="form-control" minlength="5" maxlength="256" />								
-								Confirm Passwort: <input type="password" name="password_confirm" required parsley-trigger="change" placeholder="Enter password" class="form-control" minlength="5" maxlength="256" />								
+								New Passwort: <input type="password" name="password" required parsley-trigger="change" placeholder="Enter password" class="form-control" minlength="5" maxlength="256" />
+								Confirm Passwort: <input type="password" name="password_confirm" required parsley-trigger="change" placeholder="Enter password" class="form-control" minlength="5" maxlength="256" />
 							</div>
 						  <div class="form-group">
 								<label for="gid">User Status</label>
@@ -122,16 +127,16 @@
 			</div>
 		</section>
 
-	    <!-- /Section: TBL Users -->		
+	    <!-- /Section: TBL Users -->
 
 
 		<!-- Section: contact & credits -->
 		<?php
 		include ("_core/html/footer.html");
-		
-		?> 
-	    <!-- /Section: contact & credits -->		
-		
+
+		?>
+	    <!-- /Section: contact & credits -->
+
 		<!-- Section: footer -->
 		<section id="footer" class="home-section text-center bg-gray">
 			<div class="container">
@@ -146,15 +151,13 @@
 
 
 		<!-- Core JavaScript Files -->
-		<script src="../_js/jquery.min.js"></script>
 		<script src="../_js/jquery.easing.min.js"></script>
 		<script src="../_js/classie.js"></script>
 		<script src="../_js/gnmenu.js"></script>
 		<script src="../_js/jquery.scrollTo.js"></script>
 		<script src="../_js/stellar.js"></script>
-		<script src="../_js/bootstrap.min.js"></script>
 
-		
+
 		<!-- Custom Theme JavaScript -->
 		<script src="../_js/custom.js"></script>
 
