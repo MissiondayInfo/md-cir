@@ -1,6 +1,7 @@
 CREATE TABLE `agents` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `agentname` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,  
+  `agentname` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `tgname` varchar(36) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,   
   `faction` varchar(3) COLLATE latin1_general_cs NOT NULL,
   `email` varchar(256) CHARACTER SET utf8 NOT NULL,
   `authcode` varchar(8) CHARACTER SET utf8 NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE `agents` (
 CREATE TABLE `cirs_users` (
   `uid` int(3) NOT NULL AUTO_INCREMENT,
   `agentname` varchar(15) COLLATE latin1_general_cs NOT NULL,
+  `tgname` varchar(36) COLLATE latin1_general_cs NOT NULL,
   `password` varchar(32) COLLATE latin1_general_cs NOT NULL,
   `gid` smallint(2) NOT NULL,
   `sid` varchar(32) COLLATE latin1_general_cs DEFAULT NULL,
